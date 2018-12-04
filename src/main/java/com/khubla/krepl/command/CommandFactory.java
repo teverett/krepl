@@ -48,10 +48,16 @@ public class CommandFactory {
    }
 
    private void addCommand(Command command) {
-      logger.info("added REPL command: " + command.getCommand());
-      commands.put(command.getCommand(), command);
-      for (final String sc : command.getShortcuts()) {
-         shortcuts.put(sc, command);
+      if (null != command) {
+         logger.info("added REPL command: " + command.getCommand());
+         if (null != command.getCommand()) {
+            commands.put(command.getCommand(), command);
+            if (null != command.getShortcuts()) {
+               for (final String sc : command.getShortcuts()) {
+                  shortcuts.put(sc, command);
+               }
+            }
+         }
       }
    }
 

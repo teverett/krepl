@@ -6,7 +6,9 @@
  */
 package com.khubla.krepl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.khubla.krepl.command.Command;
 import com.khubla.krepl.command.CommandFactory;
 import com.khubla.krepl.command.impl.HelpCommandImpl;
+import com.khubla.krepl.command.impl.HistoryCommandImpl;
 import com.khubla.krepl.impl.DefaultREPLConsole;
 
 public class REPL {
@@ -37,6 +40,10 @@ public class REPL {
     * session parameters
     */
    private final HashMap<String, Object> sessionParameters = new HashMap<String, Object>();
+   /**
+    * command history
+    */
+   private List<String> commandHistory = new ArrayList<String>();
 
    /**
     * default CTOR
@@ -53,6 +60,9 @@ public class REPL {
          if (null != command) {
             if (command instanceof HelpCommandImpl) {
                commandFactory.showHelp(replConsole);
+               return true;
+            } else if (command instanceof HistoryCommandImpl) {
+               showCommandHistory();
                return true;
             } else {
                return command.process(arguments, replConsole, sessionParameters);
@@ -76,6 +86,10 @@ public class REPL {
       return false;
    }
 
+   public List<String> getCommandHistory() {
+      return commandHistory;
+   }
+
    public String getPrompt() {
       return prompt;
    }
@@ -94,6 +108,7 @@ public class REPL {
          while (true == go) {
             replConsole.write(REPLConsole.ConsoleColors.WHITE_BRIGHT + prompt);
             final String commandString = replConsole.readLine();
+            commandHistory.add(commandString);
             go = executeCommmandString(commandString);
             replConsole.write(REPLConsole.ConsoleColors.RESET);
          }
@@ -102,7 +117,17 @@ public class REPL {
       }
    }
 
+   public void setCommandHistory(List<String> commandHistory) {
+      this.commandHistory = commandHistory;
+   }
+
    public void setPrompt(String prompt) {
       this.prompt = prompt;
+   }
+
+   private void showCommandHistory() {
+      for (final String command : commandHistory) {
+         replConsole.writeln(command);
+      }
    }
 }
