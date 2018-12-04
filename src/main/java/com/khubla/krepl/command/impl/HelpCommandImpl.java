@@ -37,7 +37,7 @@ public class HelpCommandImpl extends AbstractCommandImpl {
    }
 
    @Override
-   public boolean process(String[] commandParameters, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException {
+   public boolean process(String[] commandArguments, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException {
       try {
          /*
           * we're done

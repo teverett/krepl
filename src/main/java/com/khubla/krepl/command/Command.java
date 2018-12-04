@@ -18,5 +18,5 @@ public interface Command {
 
    String[] getShortcuts();
 
-   boolean process(String[] commandParameters, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException;
+   boolean process(String[] commandArguments, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException;
 }
