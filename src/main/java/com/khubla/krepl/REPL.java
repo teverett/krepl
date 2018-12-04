@@ -9,6 +9,8 @@ package com.khubla.krepl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.khubla.krepl.impl.HelpCommandImpl;
+
 public class REPL {
    /**
     * logger
@@ -44,7 +46,12 @@ public class REPL {
       try {
          final Command command = commandFactory.getCommand(parts[0]);
          if (null != command) {
-            return command.process(parts, replContext);
+            if (command instanceof HelpCommandImpl) {
+               commandFactory.showHelp(replContext);
+               return true;
+            } else {
+               return command.process(parts, replContext);
+            }
          } else {
             replContext.getReplConsole().writeln("Unknown: '" + parts[0] + "'");
             return true;

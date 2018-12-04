@@ -14,8 +14,14 @@ import java.util.TreeMap;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommandFactory {
+   /**
+    * logger
+    */
+   private static final Logger logger = LoggerFactory.getLogger(CommandFactory.class);
    /**
     * commands
     */
@@ -40,6 +46,7 @@ public class CommandFactory {
    }
 
    private void addCommand(Command command) {
+      logger.info("added REPL command: " + command.getCommand());
       commands.put(command.getCommand(), command);
       shortcuts.put(command.getShortcut(), command);
    }
