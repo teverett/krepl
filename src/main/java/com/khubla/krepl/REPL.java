@@ -11,7 +11,10 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.khubla.krepl.impl.HelpCommandImpl;
+import com.khubla.krepl.command.Command;
+import com.khubla.krepl.command.CommandFactory;
+import com.khubla.krepl.command.impl.HelpCommandImpl;
+import com.khubla.krepl.impl.DefaultREPLConsole;
 
 public class REPL {
    /**
@@ -25,7 +28,7 @@ public class REPL {
    /**
     * console
     */
-   private final REPLConsole replConsole = new REPLConsole();
+   private final REPLConsole replConsole = new DefaultREPLConsole();
    /**
     * command factory
     */

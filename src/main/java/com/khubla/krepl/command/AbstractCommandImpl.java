@@ -4,7 +4,7 @@
  * Proprietary and confidential
  * Written by Tom Everett <tom@khubla.com>, 2018
  */
-package com.khubla.krepl;
+package com.khubla.krepl.command;
 
 /**
  * i may need this later and I don't feel like changing a pile of command implementations.

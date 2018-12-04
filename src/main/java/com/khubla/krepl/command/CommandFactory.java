@@ -4,7 +4,7 @@
  * Proprietary and confidential
  * Written by Tom Everett <tom@khubla.com>, 2018
  */
-package com.khubla.krepl;
+package com.khubla.krepl.command;
 
 import java.io.IOException;
 import java.lang.reflect.Modifier;
@@ -16,6 +16,8 @@ import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.khubla.krepl.REPLConsole;
 
 public class CommandFactory {
    /**
@@ -53,7 +55,7 @@ public class CommandFactory {
       }
    }
 
-   Command getCommand(String name) {
+   public Command getCommand(String name) {
       Command command = commands.get(name.trim().toLowerCase());
       if (null == command) {
          command = shortcuts.get(name.trim().toLowerCase());

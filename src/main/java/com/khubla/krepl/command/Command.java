@@ -4,9 +4,12 @@
  * Proprietary and confidential
  * Written by Tom Everett <tom@khubla.com>, 2018
  */
-package com.khubla.krepl;
+package com.khubla.krepl.command;
 
 import java.util.HashMap;
+
+import com.khubla.krepl.REPLConsole;
+import com.khubla.krepl.REPLException;
 
 public interface Command {
    String getCommand();

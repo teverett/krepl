@@ -4,16 +4,16 @@
  * Proprietary and confidential
  * Written by Tom Everett <tom@khubla.com>, 2018
  */
-package com.khubla.krepl.impl;
+package com.khubla.krepl.command.impl;
 
 import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.khubla.krepl.AbstractCommandImpl;
 import com.khubla.krepl.REPLConsole;
 import com.khubla.krepl.REPLException;
+import com.khubla.krepl.command.AbstractCommandImpl;
 
 public class HelpCommandImpl extends AbstractCommandImpl {
    /**

@@ -8,11 +8,8 @@ package com.khubla.krepl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 
-public class REPLConsole {
+public interface REPLConsole {
    /**
     * text colors
     */
@@ -36,50 +33,14 @@ public class REPLConsole {
    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-   /**
-    * in from console
-    */
-   private final BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-   /**
-    * out to console
-    */
-   private final PrintWriter outputWriter = new PrintWriter(new OutputStreamWriter(System.out));
 
-   private String buildFormatString(int args) {
-      String str = "%-25s";
-      if (args > 1) {
-         for (int i = 2; i <= args; i++) {
-            str += " %-25s";
-         }
-      }
-      str += "\n";
-      // System.out.println(str);
-      return str;
-   }
+   BufferedReader getInputReader();
 
-   public BufferedReader getInputReader() {
-      return inputReader;
-   }
+   String readLine() throws IOException;
 
-   /**
-    * readline
-    */
-   public String readLine() throws IOException {
-      return inputReader.readLine();
-   }
+   void write(String str);
 
-   public void write(String str) {
-      outputWriter.print(str);
-      outputWriter.flush();
-   }
+   void writeln(Object... args);
 
-   public void writeln(Object... args) {
-      outputWriter.printf(buildFormatString(args.length), args);
-      outputWriter.flush();
-   }
-
-   public void writeln(String str) {
-      outputWriter.println(str);
-      outputWriter.flush();
-   }
+   void writeln(String str);
 }
