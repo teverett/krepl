@@ -1,0 +1,12 @@
+**/test-output
+**/target
+**/.settings
+**/.project
+**/.classpath
+**/*.log
+**/*.log.zip
+**/.DS_Store
+**/dependency-reduced-pom.xml
+**/*.sql
+**/hsql
+
