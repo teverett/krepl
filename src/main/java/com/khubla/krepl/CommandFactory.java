@@ -27,7 +27,7 @@ public class CommandFactory {
 
    public CommandFactory() {
       try {
-         final Reflections reflections = new Reflections(this.getClass().getPackage().getName(), new SubTypesScanner(true), new TypeAnnotationsScanner());
+         final Reflections reflections = new Reflections(null, new SubTypesScanner(true), new TypeAnnotationsScanner());
          final Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
          for (final Class<? extends Command> clazz : classes) {
             if ((false == clazz.isInterface()) && (false == Modifier.isAbstract(clazz.getModifiers()))) {
