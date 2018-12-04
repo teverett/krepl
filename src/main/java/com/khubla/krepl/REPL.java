@@ -58,7 +58,7 @@ public class REPL {
                return command.process(arguments, replConsole, sessionParameters);
             }
          } else {
-            replConsole.writeln("Unknown: '" + arguments[0] + "'");
+            replConsole.writeln(REPLConsole.ConsoleColors.RED + "Unknown: '" + arguments[0] + "'" + REPLConsole.ConsoleColors.RESET);
             return true;
          }
       } catch (final Exception e) {
@@ -92,9 +92,10 @@ public class REPL {
       try {
          boolean go = true;
          while (true == go) {
-            replConsole.write(prompt);
+            replConsole.write(REPLConsole.ConsoleColors.WHITE_BRIGHT + prompt);
             final String commandString = replConsole.readLine();
             go = executeCommmandString(commandString);
+            replConsole.write(REPLConsole.ConsoleColors.RESET);
          }
       } catch (final Exception e) {
          e.printStackTrace();
