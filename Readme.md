@@ -1,5 +1,5 @@
 [![Travis](https://travis-ci.org/teverett/krepl.svg?branch=master)](https://travis-ci.org/teverett/krepl)
-[![DepShield Badge](https://depshield.sonatype.org/badges/teverett/repository/krepl.svg)](https://depshield.github.io)
+[![DepShield Badge](https://depshield.sonatype.org/badges/teverett/krepl/depshield.svg)](https://depshield.github.io)
 
 K-REPL
 ===
