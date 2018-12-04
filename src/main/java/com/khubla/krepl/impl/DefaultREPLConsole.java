@@ -8,21 +8,37 @@ package com.khubla.krepl.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.PrintStream;
 
 import com.khubla.krepl.REPLConsole;
 
 public class DefaultREPLConsole implements REPLConsole {
    /**
-    * in from console
+    * input
     */
-   private final BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+   private final BufferedReader bufferedReader;
    /**
-    * out to console
+    * output
     */
-   private final PrintWriter outputWriter = new PrintWriter(new OutputStreamWriter(System.out));
+   private final PrintStream outputStream;
+
+   /**
+    * ctor
+    */
+   public DefaultREPLConsole() {
+      bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+      outputStream = System.out;
+   }
+
+   /**
+    * ctor
+    */
+   public DefaultREPLConsole(InputStream inputStream, PrintStream outputStream) {
+      bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+      this.outputStream = outputStream;
+   }
 
    private String buildFormatString(int args) {
       String str = "%-25s";
@@ -32,38 +48,29 @@ public class DefaultREPLConsole implements REPLConsole {
          }
       }
       str += "\n";
-      // System.out.println(str);
       return str;
    }
 
    @Override
-   public BufferedReader getInputReader() {
-      return inputReader;
-   }
-
-   /**
-    * readline
-    */
-   @Override
-   public String readLine() throws IOException {
-      return inputReader.readLine();
+   public String readln() throws IOException {
+      return bufferedReader.readLine();
    }
 
    @Override
    public void write(String str) {
-      outputWriter.print(str);
-      outputWriter.flush();
+      outputStream.print(str);
+      outputStream.flush();
    }
 
    @Override
    public void writeln(Object... args) {
-      outputWriter.printf(buildFormatString(args.length), args);
-      outputWriter.flush();
+      outputStream.printf(buildFormatString(args.length), args);
+      outputStream.flush();
    }
 
    @Override
    public void writeln(String str) {
-      outputWriter.println(str);
-      outputWriter.flush();
+      outputStream.println(str);
+      outputStream.flush();
    }
 }

@@ -6,7 +6,6 @@
  */
 package com.khubla.krepl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 
 public interface REPLConsole {
@@ -78,13 +77,11 @@ public interface REPLConsole {
       public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m"; // WHITE
    }
 
-   BufferedReader getInputReader();
+   String readln() throws IOException;
 
-   String readLine() throws IOException;
+   void write(String str) throws IOException;
 
-   void write(String str);
+   void writeln(Object... args) throws IOException;
 
-   void writeln(Object... args);
-
-   void writeln(String str);
+   void writeln(String str) throws IOException;
 }

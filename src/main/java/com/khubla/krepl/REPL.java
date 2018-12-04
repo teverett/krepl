@@ -126,7 +126,7 @@ public class REPL {
             /*
              * get input
              */
-            final String commandString = replConsole.readLine();
+            final String commandString = replConsole.readln();
             /*
              * save command to history
              */
@@ -142,6 +142,7 @@ public class REPL {
          }
       } catch (final Exception e) {
          e.printStackTrace();
+         logger.error("Error in repl", e);
       }
    }
 
@@ -154,8 +155,13 @@ public class REPL {
    }
 
    private void showCommandHistory() {
-      for (final String command : commandHistory) {
-         replConsole.writeln(command);
+      try {
+         for (final String command : commandHistory) {
+            replConsole.writeln(command);
+         }
+      } catch (final Exception e) {
+         e.printStackTrace();
+         logger.error("Error in showCommandHistory", e);
       }
    }
 }
