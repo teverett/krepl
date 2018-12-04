@@ -71,7 +71,11 @@ public class CommandFactory {
 
    public void showHelp(REPLConsole replConsole) throws IOException {
       for (final Command command : commands.values()) {
-         replConsole.writeln(command.getShortcuts()[0], command.getCommand(), command.getHelp());
+         String sc = "<none>";
+         if ((null != command.getShortcuts()) && (null != command.getShortcuts()[0])) {
+            sc = command.getShortcuts()[0];
+         }
+         replConsole.writeln(sc, command.getCommand(), command.getHelp());
       }
    }
 }

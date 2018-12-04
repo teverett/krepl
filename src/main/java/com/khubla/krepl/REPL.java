@@ -79,6 +79,19 @@ public class REPL {
    }
 
    public boolean executeCommmandString(String commandString) {
+      if ((null != commandString) && (commandString.length() > 0)) {
+         final String[] commands = commandString.split(";");
+         for (final String command : commands) {
+            final boolean result = executeSingleCommmand(command);
+            if (false == result) {
+               return result;
+            }
+         }
+      }
+      return true;
+   }
+
+   public boolean executeSingleCommmand(String commandString) {
       final String[] arguments = commandString.split(" ");
       if (arguments.length > 0) {
          return dispatchCommand(arguments);
