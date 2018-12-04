@@ -47,18 +47,18 @@ public class REPL {
    /**
     * dispatch
     */
-   private boolean dispatchCommand(String[] parts) {
+   private boolean dispatchCommand(String[] arguments) {
       try {
-         final Command command = commandFactory.getCommand(parts[0]);
+         final Command command = commandFactory.getCommand(arguments[0]);
          if (null != command) {
             if (command instanceof HelpCommandImpl) {
                commandFactory.showHelp(replConsole);
                return true;
             } else {
-               return command.process(parts, replConsole, sessionParameters);
+               return command.process(arguments, replConsole, sessionParameters);
             }
          } else {
-            replConsole.writeln("Unknown: '" + parts[0] + "'");
+            replConsole.writeln("Unknown: '" + arguments[0] + "'");
             return true;
          }
       } catch (final Exception e) {
@@ -69,9 +69,9 @@ public class REPL {
    }
 
    public boolean executeCommmandString(String commandString) {
-      final String[] parts = commandString.split(" ");
-      if (parts.length > 0) {
-         return dispatchCommand(parts);
+      final String[] arguments = commandString.split(" ");
+      if (arguments.length > 0) {
+         return dispatchCommand(arguments);
       }
       return false;
    }
