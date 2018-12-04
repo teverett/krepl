@@ -3,7 +3,7 @@
 	<groupId>com.khubla.krepl</groupId>
 	<artifactId>krepl</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>khubla.com K-REPL</name>
 	<url>https://github.com/teverett/krepl</url>
 	<properties>
@@ -30,7 +30,8 @@
 	</licenses>
 	<scm>
 		<connection>scm:git:https://github.com/teverett/krepl.git</connection>
-	</scm>
+	  <tag>krepl-1.0</tag>
+  </scm>
 	<organization>
 		<name>khubla.com</name>
 		<url>http://www.khubla.com</url>
