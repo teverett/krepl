@@ -4,7 +4,7 @@
 	<artifactId>krepl</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>khubla.com KREPL</name>
+	<name>khubla.com K-REPL</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<reflections.version>0.9.11</reflections.version>
