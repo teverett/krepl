@@ -106,10 +106,25 @@ public class REPL {
       try {
          boolean go = true;
          while (true == go) {
+            /*
+             * write prompt
+             */
             replConsole.write(REPLConsole.ConsoleColors.WHITE_BRIGHT + prompt);
+            /*
+             * get input
+             */
             final String commandString = replConsole.readLine();
+            /*
+             * save command to history
+             */
             commandHistory.add(commandString);
+            /*
+             * execute command
+             */
             go = executeCommmandString(commandString);
+            /*
+             * reset colors
+             */
             replConsole.write(REPLConsole.ConsoleColors.RESET);
          }
       } catch (final Exception e) {
