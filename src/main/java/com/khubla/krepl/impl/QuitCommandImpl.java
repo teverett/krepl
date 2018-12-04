@@ -6,8 +6,10 @@
  */
 package com.khubla.krepl.impl;
 
+import java.util.HashMap;
+
 import com.khubla.krepl.AbstractCommandImpl;
-import com.khubla.krepl.REPLContext;
+import com.khubla.krepl.REPLConsole;
 import com.khubla.krepl.REPLException;
 
 public class QuitCommandImpl extends AbstractCommandImpl {
@@ -22,12 +24,12 @@ public class QuitCommandImpl extends AbstractCommandImpl {
    }
 
    @Override
-   public String getShortcut() {
-      return "q";
+   public String[] getShortcuts() {
+      return new String[] { "q" };
    }
 
    @Override
-   public boolean process(String[] parameters, REPLContext replContext) throws REPLException {
+   public boolean process(String[] commandParameters, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException {
       /*
        * we're done
        */

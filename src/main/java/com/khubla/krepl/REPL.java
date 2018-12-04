@@ -6,6 +6,8 @@
  */
 package com.khubla.krepl;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,26 +19,26 @@ public class REPL {
     */
    private static final Logger logger = LoggerFactory.getLogger(REPL.class);
    /**
+    * prompt
+    */
+   private String prompt = ">";
+   /**
+    * console
+    */
+   private final REPLConsole replConsole = new REPLConsole();
+   /**
     * command factory
     */
    private final CommandFactory commandFactory = new CommandFactory();
    /**
-    * context
+    * session parameters
     */
-   private final REPLContext replContext;
+   private final HashMap<String, Object> sessionParameters = new HashMap<String, Object>();
 
    /**
     * default CTOR
     */
    public REPL() {
-      this.replContext = new REPLContext();
-   }
-
-   /**
-    * custom context
-    */
-   public REPL(REPLContext replContext) {
-      this.replContext = replContext;
    }
 
    /**
@@ -47,13 +49,13 @@ public class REPL {
          final Command command = commandFactory.getCommand(parts[0]);
          if (null != command) {
             if (command instanceof HelpCommandImpl) {
-               commandFactory.showHelp(replContext);
+               commandFactory.showHelp(replConsole);
                return true;
             } else {
-               return command.process(parts, replContext);
+               return command.process(parts, replConsole, sessionParameters);
             }
          } else {
-            replContext.getReplConsole().writeln("Unknown: '" + parts[0] + "'");
+            replConsole.writeln("Unknown: '" + parts[0] + "'");
             return true;
          }
       } catch (final Exception e) {
@@ -63,31 +65,40 @@ public class REPL {
       }
    }
 
-   public void executeCommmandString(String commandString) {
-      if ((null != commandString) && (commandString.length() > 0)) {
-         final String[] parts = commandString.split(";");
-         for (final String part : parts) {
-            executeSingleCommand(part);
-         }
-      }
-   }
-
-   private void executeSingleCommand(String commandString) {
+   public boolean executeCommmandString(String commandString) {
       final String[] parts = commandString.split(" ");
       if (parts.length > 0) {
-         replContext.setGo(dispatchCommand(parts));
+         return dispatchCommand(parts);
       }
+      return false;
+   }
+
+   public String getPrompt() {
+      return prompt;
+   }
+
+   public REPLConsole getReplConsole() {
+      return replConsole;
+   }
+
+   public HashMap<String, Object> getSessionParameters() {
+      return sessionParameters;
    }
 
    public void repl() {
       try {
-         while (replContext.isGo()) {
-            replContext.getReplConsole().write(">");
-            final String commandString = replContext.getReplConsole().readLine();
-            executeCommmandString(commandString);
+         boolean go = true;
+         while (true == go) {
+            replConsole.write(prompt);
+            final String commandString = replConsole.readLine();
+            go = executeCommmandString(commandString);
          }
       } catch (final Exception e) {
          e.printStackTrace();
       }
+   }
+
+   public void setPrompt(String prompt) {
+      this.prompt = prompt;
    }
 }

@@ -48,7 +48,9 @@ public class CommandFactory {
    private void addCommand(Command command) {
       logger.info("added REPL command: " + command.getCommand());
       commands.put(command.getCommand(), command);
-      shortcuts.put(command.getShortcut(), command);
+      for (final String sc : command.getShortcuts()) {
+         shortcuts.put(sc, command);
+      }
    }
 
    Command getCommand(String name) {
@@ -59,9 +61,9 @@ public class CommandFactory {
       return command;
    }
 
-   public void showHelp(REPLContext replContext) throws IOException {
+   public void showHelp(REPLConsole replConsole) throws IOException {
       for (final Command command : commands.values()) {
-         replContext.getReplConsole().writeln(command.getShortcut(), command.getCommand(), command.getHelp());
+         replConsole.writeln(command.getShortcuts()[0], command.getCommand(), command.getHelp());
       }
    }
 }

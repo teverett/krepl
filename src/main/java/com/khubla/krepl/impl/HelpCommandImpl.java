@@ -6,11 +6,13 @@
  */
 package com.khubla.krepl.impl;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.khubla.krepl.AbstractCommandImpl;
-import com.khubla.krepl.REPLContext;
+import com.khubla.krepl.REPLConsole;
 import com.khubla.krepl.REPLException;
 
 public class HelpCommandImpl extends AbstractCommandImpl {
@@ -30,12 +32,12 @@ public class HelpCommandImpl extends AbstractCommandImpl {
    }
 
    @Override
-   public String getShortcut() {
-      return "?";
+   public String[] getShortcuts() {
+      return new String[] { "?" };
    }
 
    @Override
-   public boolean process(String[] parameters, REPLContext replContext) throws REPLException {
+   public boolean process(String[] commandParameters, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException {
       try {
          /*
           * we're done

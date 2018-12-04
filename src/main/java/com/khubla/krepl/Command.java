@@ -6,12 +6,14 @@
  */
 package com.khubla.krepl;
 
+import java.util.HashMap;
+
 public interface Command {
    String getCommand();
 
    String getHelp();
 
-   String getShortcut();
+   String[] getShortcuts();
 
-   boolean process(String[] parameters, REPLContext replContext) throws REPLException;
+   boolean process(String[] commandParameters, REPLConsole replConsole, HashMap<String, Object> sesssionParameters) throws REPLException;
 }
