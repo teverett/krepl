@@ -4,7 +4,7 @@
  * Proprietary and confidential
  * Written by Tom Everett <tom@khubla.com>, 2018
  */
-package com.khubla.cli.repl.impl;
+package com.khubla.krepl.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
