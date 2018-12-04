@@ -91,7 +91,7 @@ public class REPL {
       return true;
    }
 
-   public boolean executeSingleCommmand(String commandString) {
+   private boolean executeSingleCommmand(String commandString) {
       final String[] arguments = commandString.split(" ");
       if (arguments.length > 0) {
          return dispatchCommand(arguments);
