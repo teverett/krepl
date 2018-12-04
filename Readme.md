@@ -6,6 +6,15 @@ K-REPL
 
 K-REPL is a simple framework for building command-line REPLs in Java
 
+Maven coordinates
+---
+
+```
+<groupId>com.khubla.krepl</groupId>
+<artifactId>krepl</artifactId>
+<version>1.0</version>
+<packaging>jar</packaging>
+```
 
 Adding Commands
 ---
@@ -17,10 +26,10 @@ Running the REPL
 
 Simply instantiate the REPL class and call the method `repl()`
 
-<pre>
+```
 REPL repl = new REPL();
 repl.repl();
-</pre>
+```
 
 It is possible to pass command strings directly to the repl via the `REPL.executeCommmandString()` API.
 
