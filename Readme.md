@@ -1,4 +1,5 @@
 [![Travis](https://travis-ci.org/teverett/krepl.svg?branch=master)](https://travis-ci.org/teverett/krepl)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea088223d07242f196809250a2d255e9)](https://www.codacy.com/app/teverett/krepl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teverett/krepl&amp;utm_campaign=Badge_Grade)
 [![DepShield Badge](https://depshield.sonatype.org/badges/teverett/krepl/depshield.svg)](https://depshield.github.io)
 
 K-REPL
