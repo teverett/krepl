@@ -29,9 +29,6 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	<scm>
-		<connection>scm:git:https://github.com/teverett/krepl.git</connection>
-	</scm>
 	<organization>
 		<name>khubla.com</name>
 		<url>http://www.khubla.com</url>
@@ -147,4 +144,7 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
+	<scm>
+		<url>scm:git:https://github.com/teverett/krepl.git</url>
+	</scm>
 </project>
