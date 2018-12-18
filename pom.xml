@@ -3,8 +3,9 @@
 	<groupId>com.khubla.krepl</groupId>
 	<artifactId>krepl</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<name>khubla.com K-REPL</name>
+	<description>A java REPL framework</description>
 	<url>https://github.com/teverett/krepl</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,8 +31,7 @@
 	</licenses>
 	<scm>
 		<connection>scm:git:https://github.com/teverett/krepl.git</connection>
-	  <tag>HEAD</tag>
-  </scm>
+	</scm>
 	<organization>
 		<name>khubla.com</name>
 		<url>http://www.khubla.com</url>
