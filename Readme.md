@@ -13,7 +13,7 @@ Maven coordinates
 ```
 <groupId>com.khubla.krepl</groupId>
 <artifactId>krepl</artifactId>
-<version>1.0</version>
+<version>1.1</version>
 <packaging>jar</packaging>
 ```
 
