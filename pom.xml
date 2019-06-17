@@ -3,7 +3,7 @@
 	<groupId>com.khubla.krepl</groupId>
 	<artifactId>krepl</artifactId>
 	<packaging>jar</packaging>
-	<version>1.2.0-SNAPSHOT</version>
+	<version>1.2.0</version>
 	<name>khubla.com K-REPL</name>
 	<description>A java REPL framework</description>
 	<url>https://github.com/teverett/krepl</url>
@@ -115,6 +115,7 @@
 						</executions>
 						<configuration>
 							<additionalparam>-Xdoclint:none</additionalparam>
+							<source>8</source> 
 						</configuration>
 					</plugin>
 					<plugin>
