@@ -9,7 +9,6 @@
 	<url>https://github.com/teverett/krepl</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<reflections.version>0.9.11</reflections.version>
 		<slf4j-api.version>1.7.25</slf4j-api.version>
 		<target.jvm>1.8</target.jvm>
 		<spotless.version>1.17.0</spotless.version>
@@ -35,24 +34,6 @@
 	</organization>
 	<dependencies>
 		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>${reflections.version}</version>
-			<exclusions>
-				<exclusion>
-					<!-- remove guava v20 since it has a vulnerability -->
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- include latest guva for reflections -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>27.0.1-jre</version>
-		</dependency>
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j-api.version}</version>
@@ -67,25 +48,6 @@
 				<configuration>
 					<source>${target.jvm}</source>
 					<target>${target.jvm}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.diffplug.spotless</groupId>
-				<artifactId>spotless-maven-plugin</artifactId>
-				<version>${spotless.version}</version>
-				<configuration>
-					<lineEndings>UNIX</lineEndings>
-					<encoding>UTF-8</encoding>
-					<java>
-						<eclipse>
-							<file>${maven.multiModuleProjectDirectory}/format.eclipse.xml</file>
-							<version>4.7.1</version>
-						</eclipse>
-						<removeUnusedImports />
-						<importOrder>
-							<file>${maven.multiModuleProjectDirectory}/format.importorder</file>
-						</importOrder>
-					</java>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -105,18 +67,6 @@
 								</requireMavenVersion>
 							</rules>
 						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.owasp</groupId>
-				<artifactId>dependency-check-maven</artifactId>
-				<version>5.0.0-M2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>

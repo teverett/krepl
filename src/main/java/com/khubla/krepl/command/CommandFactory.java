@@ -7,17 +7,15 @@
 package com.khubla.krepl.command;
 
 import java.io.IOException;
-import java.lang.reflect.Modifier;
-import java.util.Set;
 import java.util.TreeMap;
 
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.khubla.krepl.REPLConsole;
+import com.khubla.krepl.command.impl.HelpCommandImpl;
+import com.khubla.krepl.command.impl.HistoryCommandImpl;
+import com.khubla.krepl.command.impl.QuitCommandImpl;
 
 public class CommandFactory {
    /**
@@ -34,20 +32,12 @@ public class CommandFactory {
    private final TreeMap<String, Command> shortcuts = new TreeMap<String, Command>();
 
    public CommandFactory() {
-      try {
-         final Reflections reflections = new Reflections(null, new SubTypesScanner(true), new TypeAnnotationsScanner());
-         final Set<Class<? extends Command>> classes = reflections.getSubTypesOf(Command.class);
-         for (final Class<? extends Command> clazz : classes) {
-            if ((false == clazz.isInterface()) && (false == Modifier.isAbstract(clazz.getModifiers()))) {
-               addCommand(clazz.newInstance());
-            }
-         }
-      } catch (final Exception e) {
-         e.printStackTrace();
-      }
+      addCommand(new HelpCommandImpl());
+      addCommand(new HistoryCommandImpl());
+      addCommand(new QuitCommandImpl());
    }
 
-   private void addCommand(Command command) {
+   public void addCommand(Command command) {
       if (null != command) {
          logger.info("added REPL command: " + command.getCommand());
          if (null != command.getCommand()) {

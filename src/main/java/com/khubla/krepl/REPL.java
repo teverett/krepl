@@ -52,6 +52,13 @@ public class REPL {
    }
 
    /**
+    * add command
+    */
+   public void addCommand(Command command) {
+      commandFactory.addCommand(command);
+   }
+
+   /**
     * dispatch
     */
    private boolean dispatchCommand(String[] arguments) {
